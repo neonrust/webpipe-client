@@ -14,6 +14,7 @@ Above sizes are minified.
 
 WebPipe have only one dependency: 
 An `EventEmitter` class with standard methods: `.on()`, `.off()` and `.emit()`.
+
 [MicroEmitter](http://notes.jetienne.com/2011/03/22/microeventjs.html) works just fine.
 
 * How to run tests
