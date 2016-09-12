@@ -1,0 +1,7 @@
+{
+	"scripts": {
+		"build": "webpack --optimize-minimize --progress src/webpipe.js dist/webpipe.js",
+		"test": ""
+	}
+}
+	
