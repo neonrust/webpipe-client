@@ -16,7 +16,7 @@ Also, WebPipe has NO legacy support, or burden depending on how you wish to look
 
 ### Dependencies ###
 
-WebPipe have only one dependency: 
+WebPipe has only a single dependency: 
 
 * An "event emitter" class with standard methods: `.on()`, `.off()` and `.emit()`.
   [MicroEmitter](http://notes.jetienne.com/2011/03/22/microeventjs.html) works just fine.
