@@ -1,14 +1,16 @@
-# WebPipe - slim WebSocket library #
+# WebPipe - a slim WebSocket library #
 
 ### Why another? ###
 
-This pretty much sums it up:
+This pretty much sums up my original motivation:
 
 * socket.io 97 kiB
 * sockjs 57 kiB
 * webpipe **3.7 kiB**
 
 Above sizes are minified.
+
+Also, WebPipe has NO legacy support, or burden depending on how you wish to look at it.
 
 ### Dependencies ###
 
