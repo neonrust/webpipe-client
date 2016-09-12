@@ -10,12 +10,12 @@ This pretty much sums it up:
 
 Above sizes are minified.
 
+### Dependencies ###
 
-### How do I get set up? ###
+WebPipe have only one dependency: 
+An `EventEmitter` class with standard methods: `.on()`, `.off()` and `.emit()`.
+[MicroEmitter](http://notes.jetienne.com/2011/03/22/microeventjs.html) works just fine.
 
-* Summary of set up
-* Configuration
-* Dependencies
 * How to run tests
 * Deployment instructions
 
