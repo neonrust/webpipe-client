@@ -1,4 +1,4 @@
-# README #
+# WebPipe - slim WebSocket library #
 
 ### Why another? ###
 
