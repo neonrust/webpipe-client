@@ -2,9 +2,12 @@
 
 ### Why another? ###
 
+This pretty much sums it up:
+
 * socket.io *97 kiB*
 * sockjs *57 kiB*
 * webpipe *3.7 kiB*
+
 
 ### How do I get set up? ###
 
