@@ -1,5 +1,7 @@
 # WebPipe - a slim WebSocket library #
 
+A socket.io-like JavaScript library for WebSocket communication.
+
 ### Why another? ###
 
 This pretty much sums up my original motivation:
