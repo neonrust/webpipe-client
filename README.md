@@ -6,7 +6,7 @@ A socket.io-like JavaScript library for WebSocket communication.
 
 This pretty much sums up my original motivation:
 
-* socket.io 97 kiB
+* socket.io 97 kiB  (1.4.5)
 * sockjs 57 kiB
 * webpipe **3.7 kiB**
 
