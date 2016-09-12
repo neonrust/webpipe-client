@@ -17,16 +17,7 @@ WebPipe have only one dependency:
 * An `EventEmitter` class with standard methods: `.on()`, `.off()` and `.emit()`.
   [MicroEmitter](http://notes.jetienne.com/2011/03/22/microeventjs.html) works just fine.
 
-* How to run tests
-* Deployment instructions
 
-### Contribution guidelines ###
+### Contacts ###
 
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* bitbucket@0x1.se
