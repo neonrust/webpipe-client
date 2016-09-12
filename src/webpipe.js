@@ -1,5 +1,9 @@
 'use strict';
 
+// WebPipe 1.0 | https://bitbucket.org/tatsujin/webpipe-client
+
+var EventEmitter = require('./eventemit.js');
+
 function WebPipe(options)
 {
 	this.CLOSE_NORMAL = 1000;
@@ -18,6 +22,7 @@ function WebPipe(options)
        openAttemptsMax:    int      ATTEMPTS_MAX
        backoffMax:         int      BACKOFF_MAX
 	   handshakeTimeout:   int      2000ms
+	   emitterClass:       class    EventEmitter
 	 }
     */
 
@@ -32,8 +37,8 @@ function WebPipe(options)
 		options = { path: options };
 
     this._options = {};
-	const ops = options || {};
-	for(const key in ops)
+	var ops = options || {};
+	for(var key in ops)
 		this._options[key] = ops[key];
 
     this._options.openAttemptsMax = this._options.openAttemptsMax || this.ATTEMPTS_MAX;
@@ -46,7 +51,7 @@ function WebPipe(options)
 
     this.name = this._options.name || 'noname';
 
-    const events = new EventEmitter();
+    var events = new EventEmitter();
     this._events = events;
     this._replyEvents = new EventEmitter();
     this._outgoing = [];
@@ -55,15 +60,15 @@ function WebPipe(options)
     this.off = events.off.bind(events);
 
 
-    const loc = window.location;
-    const baseUrl = 'ws://' + (this._options.host || loc.hostname) + ':' + (this._options.port || loc.port || 80) + '/';
-    let path = this._options.path || 'webpipe';
+    var loc = window.location;
+    var baseUrl = 'ws://' + (this._options.host || loc.hostname) + ':' + (this._options.port || loc.port || 80) + '/';
+    var path = this._options.path || 'webpipe';
     if(path[0] === '/')
         path = path.substring(1);
 
     this._url = baseUrl + path;
 
-    let pipe = this._open();
+    var pipe = this._open();
     if(! pipe)
         return null;
 
@@ -95,7 +100,7 @@ WebPipe.prototype._open = function()
 {
     this._state = 1; // opening
 
-    let pipe = null;
+    var pipe = null;
     try
     {
         pipe = new WebSocket(this._url);
@@ -122,7 +127,7 @@ WebPipe.prototype._openFailed = function()
 
 WebPipe.prototype._handleRetries = function()
 {
-    const atMax = this._options.openAttemptsMax;
+    var atMax = this._options.openAttemptsMax;
     if(this._openAttempt > atMax)
     {
         this._openFailed();
@@ -132,18 +137,18 @@ WebPipe.prototype._handleRetries = function()
         ++this._openAttempt;
 
     // backoff; delay between open attempts
-    const boMax = this._options.backoffMax;
+    var boMax = this._options.backoffMax;
     if(this._backoff > boMax)
         this._backoff = boMax;
     else
         ++this._backoff;
 
-    const delay = 500 + this._backoff*500;
+    var delay = 500 + this._backoff*500;
 
     if(this._logLevel >= 10)
 		console.log('retry in', (delay/1000), 'seconds');
 
-    const self = this;
+    var self = this;
     setTimeout(function() {
         self._pipe = self._open();
     }, delay);
@@ -152,7 +157,7 @@ WebPipe.prototype._handleRetries = function()
 
 WebPipe.prototype._bindEvents = function(pipe)
 {
-    const self = this;
+    var self = this;
 
     pipe.onerror = function(evt) {
         self._events.emit('error', event);
@@ -174,7 +179,7 @@ WebPipe.prototype._bindEvents = function(pipe)
             self._pipe = null;
 
             // re-open
-            const reopen = close.code !== self.CLOSE_NORMAL || !close.wasClean;
+            var reopen = close.code !== self.CLOSE_NORMAL || !close.wasClean;
 
             self._events.emit('closed', close.code, reopen);
 
@@ -191,7 +196,7 @@ WebPipe.prototype._bindEvents = function(pipe)
 
         function onMessage(event) // installed after handshake is complete
         {
-            const msg = JSON.parse(event.data);
+            var msg = JSON.parse(event.data);
 
 			if('replyTo' in msg)  // this is a reply to a message, handler in emit()
 			    self._replyEvents.emit(msg.replyTo, msg);
@@ -200,7 +205,7 @@ WebPipe.prototype._bindEvents = function(pipe)
         }
 
         // we expect the server to first send a handshake after opened
-        let handShakeTimer = setTimeout(function() {
+        var handShakeTimer = setTimeout(function() {
             throw new Error('WebPipe: No handshake received!');
         }, self._options.handshakeTimeout);
 
@@ -232,13 +237,13 @@ WebPipe.prototype._bindEvents = function(pipe)
 WebPipe.prototype._sendOutgoing = function()
 {
     // use a temp in case the websocket closes during sending (messages will then be enqueued again)
-    const out = this._outgoing;
+    var out = this._outgoing;
     this._outgoing = [];
 
-    const send = this._pipe.send.bind(this._pipe);
-    const L = out.length;
+    var send = this._pipe.send.bind(this._pipe);
+    var L = out.length;
 
-    for(let idx = 0; idx < L; ++idx)
+    for(var idx = 0; idx < L; ++idx)
         send(out[idx]);
 };
 
@@ -256,27 +261,27 @@ WebPipe.prototype.close = function()
 
 WebPipe.prototype.emit = function(name /*, args...*/)
 {
-    const nargs = arguments.length;
+    var nargs = arguments.length;
     if(nargs === 0)
         return false;
 
-    const message = {
+    var message = {
         n: name,
     };
 
     if(nargs > 1)  // including 'name'
 	{
-		const lastArg = arguments[arguments.length - 1];
-		let endIdx = arguments.length;
+		var lastArg = arguments[arguments.length - 1];
+		var endIdx = arguments.length;
 
 		// if last argument is a callback, we expect a reply
 		if(typeof lastArg === 'function')
 		{
 			message.requestId = ('' + Math.random()).substring(2);
-			const callback = lastArg;
+			var callback = lastArg;
 			--endIdx;
 
-			const self = this;
+			var self = this;
 
 			// install reply handler
 			function onReply(reply)
@@ -290,7 +295,7 @@ WebPipe.prototype.emit = function(name /*, args...*/)
 		message.args = Array.prototype.slice.call(arguments, 1, endIdx);
 	}
 
-    const messageData = JSON.stringify(message);
+    var messageData = JSON.stringify(message);
 
     if(this.is_open())
         this._pipe.send(messageData);
