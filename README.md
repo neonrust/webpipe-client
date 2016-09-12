@@ -8,6 +8,8 @@ This pretty much sums it up:
 * sockjs 57 kiB
 * webpipe **3.7 kiB**
 
+Above sizes are minified.
+
 
 ### How do I get set up? ###
 
