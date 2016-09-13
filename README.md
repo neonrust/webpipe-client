@@ -26,7 +26,7 @@ This pretty much sums up my original motivation:
 
 Above sizes are minified.
 
-Also, WebPipe has NO legacy support, or burden depending on how you wish to look at it.
+Also, WebPipe has NO support for other transports, long-polling etc.
 
 ### Dependencies ###
 
