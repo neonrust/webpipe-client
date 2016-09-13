@@ -30,7 +30,7 @@ Also, WebPipe has NO legacy support, or burden depending on how you wish to look
 
 ### Dependencies ###
 
-WebPipe has no javascript dependencies. However, it depends on the web browser to support WebSockets ([RFC 6455](https://tools.ietf.org/html/rfc6455)).
+WebPipe has no javascript dependencies. However, it depends on the web browser to support [WebSockets](https://www.w3.org/TR/2011/WD-websockets-20110929).
 
 
 ### Contacts ###
