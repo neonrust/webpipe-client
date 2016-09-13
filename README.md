@@ -1,4 +1,4 @@
-# WebPipe - a slim WebSocket library #
+# WebPipe - a **slim** WebSocket library #
 
 ### Overview ###
 
