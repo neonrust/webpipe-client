@@ -7,11 +7,11 @@ A socket.io-like JavaScript library for WebSocket communication.
 * automatic and transparent reconnections
 * Almost complete drop-in replacement for socket.io:
 ```
-pipe.emit('something', 'arg1', 42, (reply) => {
-  console.log('got reply:', reply);
-});
 pipe.on('fromserver', (arg1, arg2) => {
   console.log('server said:', arg1, arg2);
+});
+pipe.emit('something', 'arg1', 42, (reply) => {
+  console.log('got reply:', reply);
 });
 ```
 
