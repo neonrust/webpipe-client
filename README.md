@@ -1,6 +1,15 @@
 # WebPipe - a slim WebSocket library #
 
+### Overview ###
+
 A socket.io-like JavaScript library for WebSocket communication.
+
+* socket.io-like reply semantics:
+```
+pipe.emit('something', 'arg1', 42, (reply) => {
+  console.log('got reply:', reply);
+});
+```
 
 ### Why another? ###
 
