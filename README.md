@@ -35,4 +35,4 @@ WebPipe has no javascript dependencies. However, it depends on the web browser t
 
 ### Contacts ###
 
-* bitbucket@0x1.se
+* github@0x1.se
