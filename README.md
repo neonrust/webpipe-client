@@ -30,7 +30,7 @@ Also, WebPipe has NO support for other transports, long-polling etc.
 
 ### Dependencies ###
 
-WebPipe has no javascript dependencies. However, it depends on the web browser to support [WebSockets](https://www.w3.org/TR/2011/WD-websockets-20110929).
+WebPipe has no javascript dependencies. However, it depends on the web browser to support [WebSockets](https://html.spec.whatwg.org/multipage/web-sockets.html).
 
 
 ### Contacts ###
