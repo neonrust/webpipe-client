@@ -5,7 +5,7 @@
 A socket.io-like JavaScript library for WebSocket communication.
 
 * Essentially a drop-in replacement for socket.io:
-```
+```javascript
 pipe.on('fromserver', (arg1, arg2) => {
   console.log('server said:', arg1, arg2);
 });
